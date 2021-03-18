@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+</head>
+<body>
+    <script>
+        let book = {
+            title: "Professional JavaScript",
+            authors: [
+            "Nicholas C. Zakas",
+            "Matt Frisbie"
+            ],
+            edition: 4,
+            year: 2017,
+            releaseDate: new Date(2017, 11, 1)
+        };
+        let jsonText = JSON.stringify(book);
+        let bookCopy = JSON.parse(jsonText,
+        (key, value) => {return key == "releaseDate" ? new Date(value) : value;});
+        alert(bookCopy.releaseDate.getFullYear());
+    </script>
+</body>
+</html>

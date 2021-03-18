@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>buzz launcher canvas</title>
+</head>
+<body style="">
+    <canvas id="drawing" width="300" height="450">A drawing of something.</canvas>
+    <canvas id="goldRect" width="300" height="450">黄金矩形</canvas>
+    <script>
+        let drawing = document.getElementById("drawing");
+
+        if (drawing.getContext) {
+            let context = drawing.getContext("2d");
+
+            // 绘制表格
+            context.lineWidth = 0.5;
+            context.strokeStyle = "#ddd";
+            context.strokeRect(0, 0, 300, 450);
+            context.beginPath();          
+            for (let i = 0.5; i < drawing.width; i += 15) {
+                context.moveTo(i, 0);
+                context.lineTo(i, drawing.height);
+            }
+            for (let y = 0.5; y < drawing.height; y += 15) {
+                context.moveTo(0, y);
+                context.lineTo(drawing.width, y);
+            }
+
+            context.lineWidth = 0.5;
+            context.stroke();
+           
+
+            /*let imgURI = drawing.toDataURL("image/png");
+            let image = document.createElement("img");
+            image.src = imgURI;
+            document.body.appendChild(image);*/
+        }
+
+
+        let goldRect = document.getElementById("goldRect");
+
+        if (goldRect.getContext) {
+            let context = goldRect.getContext("2d");
+
+            context.strokeStyle = "#000";
+            context.lineWidth = 0.5;
+            context.strokeRect(10+0.5, 10+0.5, 200, 200);
+            context.save();
+
+            context.beginPath();
+            context.strokeStyle = "rgba(255, 0, 0, 0.1)";
+            context.save();
+
+            context.moveTo(10, 110);
+            context.lineTo(210, 210);
+
+            // context.moveTo(10, 110);
+            let r0 = Math.sqrt(Math.pow(100, 2) + Math.pow(200, 2));
+            context.arc(10, 110, r0, Math.atan(0.5), 0.5 * Math.PI, false);
+            context.stroke();
+
+            
+            context.beginPath();
+
+            context.strokeStyle = "red";
+            context.moveTo(10+0.5, 210);
+            context.lineTo(10+0.5, 110 + r0);
+            context.lineTo(210, 110 + r0);
+            context.lineTo(210, 210);
+            context.stroke();
+
+            // 黄金矩形完成。
+            context.font = "16px Arial";
+            context.textAlign = "center";
+            context.textBaseline = "middle";
+            context.fillText("G", 110, 100);
+            context.beginPath();
+            let r1 = 200;
+            let r2 = r0-100;
+            context.moveTo(10+r2, 10 + r1);
+            context.lineTo(10+r2, 10 + r1 + r2);
+            context.stroke();
+            context.fillText("F", 10 + 0.5*r2, 10 + r1 + 0.5 * r2);
+
+            context.beginPath();
+            let r3 = r1-r2;
+            context.moveTo(10 + r2, 10 + 2 * r2);
+            context.lineTo(10 + r1, 10 + 2 * r2);
+            context.stroke();
+            context.fillText("E", 10 + r2 + 0.5*r3, 10 + r1 + r2 - r3 + 0.5*r3);
+
+            context.beginPath();
+            let r4 = r2-r3;
+            context.moveTo(10+r1-r4, 10 + 2 * r2);
+            context.lineTo(10+r1-r4, 210);
+            context.stroke();
+            context.fillText("D", 10 + r2 + r3 - r4 + 0.5*r4, 10 + r1 +  0.5*r4);
+
+            context.beginPath();
+            let r5 = r3-r4;
+            context.moveTo(10 + r2, 210 + r5);
+            context.lineTo(10 + r2+r5, 210 +r5);
+            context.stroke();
+            context.fillText("C", 10 + r2 + 0.5 * r5, 10 + r1 +  0.5*r5);
+
+            context.beginPath();
+            let r6 = r4-r5;
+            context.moveTo(10 + r2 +r6, 210 + r5 + r6);
+            context.lineTo(10 + r2+r6, 210 +r5);
+            context.stroke();
+            context.fillText("B", 10 + r2 + 0.5 * r6, 10 + r1 + r5 +  0.5*r6);
+
+            // 接下画圆
+
+
+
+
+
+            
+        }
+
+    </script>
+</body>
+</html>
