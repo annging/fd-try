@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>webGl</title>
+</head>
+<body>
+    <canvas id="drawing" width="300" height="300"></canvas>
+    <script type="x-webgl/x-vertex-shader" id="vertexShader">
+        attribute vec2 aVertexPosition;
+
+        void main() {
+            gl_Position = vec4(aVertexPosition, 0.0, 1.0);
+        }
+    </script><!--顶点着色器-->
+    <script type="x-webgl/x-fragment-shader" id="fragmentShader">
+        precision mediump float;
+        uniform vec4 uColor;
+        void main() {
+            gl_FragColor = uColor;
+        }
+    </script><!--片段着色器  precision mediump float 是精度描述-->
+    <!--<script type="x-webgl/x-vertex-shader" id="vertexShader300">
+        in vec2 aVertexPosition;
+
+        void main() {
+            gl_Position = vec4(aVertexPosition, 0.0, 1.0);
+        }
+    </script>--><!--顶点着色器-->
+    <!--<script type="x-webgl/x-fragment-shader" id="fragmentShader300">
+        precision mediump float;
+        uniform vec4 uColor;
+        void main() {
+            gl_FragColor = uColor;
+        }
+    </script>--><!--片段着色器  precision mediump float 是精度描述-->
+    <script>
+        let drawing = document.getElementById("drawing"),
+            gl;
+        if (drawing.getContext) {
+            try {
+                gl = drawing.getContext("webgl", { alpha: true });
+            } catch (ex) {
+                console.log(ex);
+            }
+
+            if (gl) {
+
+                // 把清理颜色缓冲区的值设置为黑色
+                gl.clearColor(255, 255, 255, 1);
+                gl.clear(gl.COLOR_BUFFER_BIT);
+
+                // 视口： 使用整个<canvas>元素 注意坐标系统
+                gl.viewport(0, 0, drawing.width, drawing.height);
+
+                // 定型数组转换为WebGL缓冲区。
+                /*let buffer = gl.createBuffer();
+                gl.bindBuffer(gl.ARRAY_BUFFER, buffer); // 将buffer设置为上下文的当前缓冲区
+                gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([0, 0.5, 1]), gl.STATIC_DRAW);*/
+
+
+                // 着色器程序
+                let vertexGlsl = document.getElementById("vertexShader").text,
+                  fragmentGlsl = document.getElementById("fragmentShader").text;
+                let vertexShader = gl.createShader(gl.VERTEX_SHADER); // 创建shader对象
+                gl.shaderSource(vertexShader, vertexGlsl); // 把GLSL代码应用到着色器
+                gl.compileShader(vertexShader); // 编译着色器
+                let fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+                gl.shaderSource(fragmentShader, fragmentGlsl);
+                gl.compileShader(fragmentShader);
+                let program = gl.createProgram(); // 创建着色器程序
+                gl.attachShader(program, vertexShader); // 添加着色器
+                gl.attachShader(program, fragmentShader); // 添加着色器
+                gl.linkProgram(program); // 链接着色器
+                gl.useProgram(program); // 现在WebGL上下文可以使用这个程序了
+
+                // 给着色器传值
+                /*let uColor = gl.getUniformLocation(program, "uColor"); // 从program中找到uniform变量uColor
+                gl.uniform4fv(uColor, [0, 0, 0, 1]); // 给uColor传值*/
+
+                /*let aVertexPosition = gl.getAttribLocation(program, "aVertexPosition"); // 取得aVertexPosition的内存位置
+                gl.enableVertexAttribArray(aVertexPosition); // 启用
+                gl.vertexAttribPointer(aVertexPosition, itemSize, gl.FLOAT, false, 0, 0); // 创建了一个指向调用gl.bindBuffer()指定的缓冲区的指针，并把它保存在 aVertexPosition 中，从而可以在后面由顶点着色器使用。 */
+                
+                // 调试着色器和程序
+                if (!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS)) {
+                    alert(gl.getShaderInfoLog(vertexShader));
+                }
+                if (!gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS)) {
+                    alert(gl.getShaderInfoLog(fragmentShader));
+                }
+
+
+
+
+                // 假设已经使用本节前面的着色器清除了视口
+                // 定义3 个顶点的x 坐标和y 坐标
+                let vertices = new Float32Array([ 0, 1, 1, -1, -1, -1 ]),
+                buffer = gl.createBuffer(),
+                vertexSetSize = 2,
+                vertexSetCount = vertices.length/vertexSetSize,
+                uColor,
+                aVertexPosition;
+                // 将数据放入缓冲区
+                gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+                gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+                // 给片段着色器传入颜色
+                uColor = gl.getUniformLocation(program, "uColor");
+                gl.uniform4fv(uColor, [ 255, 0, 0, 0.5 ]);
+                // 把顶点信息传给着色器
+                aVertexPosition = gl.getAttribLocation(program, "aVertexPosition");
+                gl.enableVertexAttribArray(aVertexPosition);
+
+                gl.vertexAttribPointer(aVertexPosition, vertexSetSize, gl.FLOAT, false, 0, 0);
+                // 绘制三角形
+                gl.drawArrays(gl.TRIANGLES, 0, vertexSetCount);
+
+
+
+
+                // 循环调用getError() 调试
+                let errorCode = gl.getError();
+                while (errorCode) {
+                    console.log("Error occurred: " + errorCode);
+                    errorCode = gl.getError();
+                }
+
+                // 释放内存
+                gl.deleteBuffer(buffer);
+
+
+
+            }
+        }
+    </script>
+    
+</body>
+</html>

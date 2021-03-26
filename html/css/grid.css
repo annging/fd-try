@@ -1,0 +1,184 @@
+/** https://colorhunt.co/palette/179946 **/
+.container {
+    max-width: 880px;
+    margin: 20px auto;
+}
+.demo {
+    margin: 20px 0;
+}
+.base {
+    margin: 50px 0;
+}
+.inline_block {
+    display: inline-block;
+    border: 1px solid #f2a51a;
+}
+figure {
+    margin: 32px 0;
+}
+code {
+    line-height: 1.5;
+    padding: .25em .5em;
+    color: #202023;
+    background-color: #ffee58;
+}
+p code {
+    background-color: #ddd;
+}
+.demo-wrapper {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    align-items: start;
+}
+dl {
+
+}
+dd {
+
+}
+dt {
+
+}
+body {
+    margin: 40px;
+}
+
+.sidebar {
+    grid-area: sidebar;
+}
+
+.sidebar2 {
+    grid-area: sidebar2;
+}
+
+.content {
+    grid-area: content;
+}
+
+.header {
+    grid-area: header;
+}
+
+.footer {
+    grid-area: footer;
+}
+
+.wrapper {
+    background-color: #fff;
+    color: #444;
+}
+
+.wrapper {
+    display: grid;
+    grid-gap: 1em;
+    grid-template-areas:
+    "header"
+    "sidebar"
+    "content"
+    "sidebar2"
+    "footer"
+}
+
+@media only screen and (min-width: 500px)  {
+    .wrapper {
+        grid-template-columns: 20% auto;
+        grid-template-areas:
+            "header   header"
+            "sidebar  content"
+            "sidebar2 sidebar2"
+            "footer   footer";
+    }
+}
+
+@media only screen and (min-width: 600px)   {
+    .wrapper {
+        grid-gap: 20px;
+        grid-template-columns: 120px auto 120px;
+        grid-template-areas:
+            "header  header  header"
+            "sidebar content sidebar2"
+            "footer  footer  footer";
+        max-width: 600px;
+    }
+}
+
+.box {
+    background-color: #444;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 150%; 
+}
+
+.header,
+.footer {
+    background-color: #999;
+}
+
+.sidebar2 {
+    background-color: #ccc;
+    color: #444;
+}
+
+/* demo1 */
+.demo {
+    display: grid;
+    border: 1px solid #342ead;
+}
+
+.demo > div {
+    background-color: #b9ebcc;
+    border: 1px solid #fff;
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.demo2 {
+    display: inline-grid;
+}
+
+.demo3 {
+    display: grid;
+    grid-template-columns: 50px 50px 100px;
+}
+.demo4 {
+    display: grid;
+    grid-template-columns: 40% 30% 30%;
+}
+.demo5 {
+    display: grid;
+    grid-template-columns: 40% repeat(2, 30%);;
+}
+.demo6 {
+    display: grid;
+    grid-template-columns: repeat(2, 30px 50px 70px);
+}
+.demo7 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 100px);
+}
+
+.demo8 {
+    display: grid;
+    grid-template-columns: 30px 1fr 2fr;
+}
+.demo9 {
+    display: grid;
+    grid-template-columns: minmax(auto, 50%) 1fr 3em;
+}
+.demo10 {
+    display: grid;
+    grid-template-columns: 40px auto 40px;
+}
+.demo11 {
+    display: grid;
+    grid-template-columns: [c1] 100px [c2] 100px [c3] auto [c4];
+}
+.demo12 {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 100px 100px 100px;
+    grid-template-areas: 'a b c'
+                         'd e f'
+                         'g h i';
+}
