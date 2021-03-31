@@ -1,0 +1,35 @@
+.container {
+    width: 880px;
+    margin: 20px auto;
+}
+canvas {
+    border: 1px dotted #ddd;
+}
+.demo-wrapper {
+    display: grid;
+}
+.demo {
+    margin: 20px 0;
+}
+code {
+    display: inline-block;
+    line-height: 1.5;
+    padding: .25em .5em;
+    color: #202023;
+    background-color: #ffee58;
+    margin-top: 5px;
+}
+.divider {
+    max-width: 600px;
+    display: block;
+    height: 0;
+    border-bottom: 1px dotted #ddd;
+    margin: 7px 0 5px 0;
+}
+
+h4 {
+    margin-block-end: 0em;
+}
+h4 + p {
+    margin-block-start: 0.5em;
+}

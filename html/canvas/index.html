@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="demo-wrapper">
+            <div class="demo">
+                <div class="info">
+                    <h3>基础示例</h3>
+                </div>
+                <div class="">
+                    <!-- Canvas 的默认大小为300像素×150像素（宽×高，像素的单位是px）。但是，可以使用HTML的高度和宽度属性来自定义Canvas 的尺寸。 -->
+                    <canvas id="drawing_1" width="600" height="120">A drawing of something.</canvas>
+                </div>
+            </div>
+            <div class="demo">
+                <div class="info">
+                    <h3>绘制矩形</h3>
+                    <p>
+                        <code>fillRect(x, y, width, height)</code> 绘制一个填充的矩形<br />
+                        <code>strokeRect(x, y, width, height)</code> 绘制一个矩形的边框 <br />
+                        <code>clearRect(x, y, width, height)</code> 清除指定矩形区域，让清除部分完全透明。
+                    </p>
+                </div>
+                <div class="">
+                    <canvas id="drawing_2" width="600" height="120">A drawing of something.</canvas>
+                </div>
+            </div>
+            <div class="demo">
+                <div class="info">
+                    <h3>绘制路径</h3>
+                    <p>
+                        <code>beginPath()</code> 新建一条路径，生成之后，图形绘制命令被指向到路径上生成路径。<br />
+                        <code>closePath()</code> 闭合路径之后图形绘制命令又重新指向到上下文中。 <br />
+                        <code>stroke()</code> 通过线条来绘制图形轮廓。<br />
+                        <code>fill()</code> 通过填充路径的内容区域生成实心的图形。
+                        <span class="divider"></span>
+                        <code>moveTo(x, y)</code> 将笔触移动到指定的坐标x以及y上。<br />
+                        <code>lineTo(x, y)</code> 绘制一条从当前位置到指定x以及y位置的直线。<br />
+                        <span class="divider"></span>
+                        <code>arc(x, y, radius, startAngle, endAngle, anticlockwise)</code> <span class="ib">画一个以（x,y）为圆心的以radius为半径的圆弧（圆），从startAngle开始到endAngle结束，按照anticlockwise给定的方向（默认为顺时针）来生成。</span><br />
+                        <code>arcTo(x1, y1, x2, y2, radius)</code> 根据给定的控制点和半径画一段圆弧，再以直线连接两个控制点。
+                    </p>
+                </div>
+                <div class="">
+                    <canvas id="drawing_3" width="600" height="220">A drawing of something.</canvas>
+                </div>
+                <p>
+                    <a href="https://zh.wikipedia.org/wiki/%E8%B2%9D%E8%8C%B2%E6%9B%B2%E7%B7%9A" target="_blank">贝塞尔曲线</a><br />
+                    <a href="https://www.victoriakirst.com/beziertool/" target="_blank">HTML5 canvas bezierCurveTo command generator</a> <br />
+                    <code>quadraticCurveTo(cp1x, cp1y, x, y)</code> 绘制二次贝塞尔曲线，cp1x,cp1y为一个控制点，x,y为结束点。<br />
+                    <code>bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)</code> 绘制三次贝塞尔曲线，cp1x,cp1y为控制点一，cp2x,cp2y为控制点二，x,y为结束点。
+                    <span class="divider"></span>
+                    <code>rect(x, y, width, height)</code> 绘制一个左上角坐标为（x,y），宽高为width以及height的矩形。
+                </p>
+                <div class="">
+                    <canvas id="drawing_3_1" width="600" height="220">A drawing of something.</canvas>
+                    <canvas id="drawing_3_2" width="600" height="220">A drawing of something.</canvas>
+                </div>
+                <h4>Path2D 对象</h4>
+                <p>
+                    <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Path2D/Path2D" target="_blank">Path2D()</a>会返回一个新初始化的Path2D对象（可能将某一个路径作为变量——创建一个它的副本，或者将一个包含SVG path数据的字符串作为变量）。<br />
+                    <code>var p = new Path2D("M150 10 h 80 v 80 h -80 Z")</code> 使用SVG path data来初始化canvas上的路径 <br />
+                    <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Path2D/addPath" target="_blank">addPath()方法</a>
+                </p>
+                <div class="">
+                    <canvas id="drawing_4" width="600" height="220">A drawing of something.</canvas>
+                </div>
+            </div>
+            <div class="demo">
+                <h3>使用样式和颜色</h3>
+                <p>
+                    <code>fillStyle = color</code> 设置图形的填充颜色。 <br />
+                    <code>strokeStyle = color</code> 设置图形轮廓的颜色。 <br />
+                    <code>globalAlpha = transparencyValue</code> 这个属性影响到 canvas 里所有图形的透明度，有效的值范围是 0.0 （完全透明）到 1.0（完全不透明），默认是 1.0。<br />
+                    
+                    <a href="https://www.w3.org/TR/css-color-3/" target="_blank"> CSS3 颜色值标准</a>
+                </p>
+                <div class="">
+                    <canvas id="drawing_5" width="600" height="150">A drawing of something.</canvas>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="./index.js"></script>
+</body>
+</html>
