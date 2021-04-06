@@ -1,6 +1,11 @@
 .container {
-    width: 880px;
+    width: 1080px;
     margin: 20px auto;
+    display: grid;
+    grid-template-columns: 200px 880px;
+}
+nav ul {
+    position: fixed;
 }
 canvas {
     border: 1px dotted #ddd;
@@ -11,7 +16,11 @@ canvas {
 .demo {
     margin: 20px 0;
 }
-code {
+pre {
+    max-width: 800px;
+    overflow: auto;
+}
+code:not(pre code) {
     display: inline-block;
     line-height: 1.5;
     padding: .25em .5em;
@@ -32,4 +41,15 @@ h4 {
 }
 h4 + p {
     margin-block-start: 0.5em;
+}
+
+.d-6 {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    grid-template-rows: 320 160;
+    grid-row-gap: 20px;
+}
+#drawing_6 {
+    grid-column-start: 1;
+    grid-column-end: 3;
 }

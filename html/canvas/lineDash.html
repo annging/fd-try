@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="./../../favicon.ico"/>
+    <title>lineDash</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+        }
+        main {
+            position: relative;
+            height: 400px;
+            width: 400px;
+        }
+        .bg {
+            background-color: #fafafa;
+            background-image: linear-gradient( 45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%, #ddd), 
+                              linear-gradient( 45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%, #ddd);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            width: 400px;
+            height: 400px;
+            margin: auto;
+        }
+        .grid {
+            display: grid;
+            position: absolute;
+            border: 1px solid #ddd;
+        }
+        .bg::after {
+            content: "";
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            width: 380px;
+            height: 380px;
+            background-color: #fff;
+        }
+        .bg {
+            grid-template-columns: repeat(20, 20px);
+            grid-template-rows: repeat(20, 20px);
+        }
+        #drawing {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>lineDashOffset</h1>
+        <p>本实例展示Canvas虚线样式的起始偏移量</p>
+    </header>
+    <main>
+        <div class="grid bg" id="bg">
+        </div>
+        <canvas id="drawing"></canvas>
+    </main>
+    <div class="controls">
+        <button id="go">offset + 一格</button>
+        <button id="xunhun">播放</button>
+        <button id="tingzhi">停止</button>
+    </div>
+    
+    <script>
+        
+        let drawing = document.getElementById("drawing");
+        let context = drawing.getContext("2d");
+        let offset = 0;
+        window.onload = function() {
+            
+            initCanvas();
+            march();
+
+
+            
+
+        }
+        function draw() {
+            context.clearRect(0, 0, drawing.width, drawing.height);
+            context.lineWidth = 20;
+            context.strokeStyle="rgba(255, 0, 0, 0.5)";
+            context.setLineDash([60, 10]);
+            context.lineDashOffset = -offset;
+            context.strokeRect(0,0, 400, 400);
+        }
+        function march() {
+            offset += 20;
+            if (offset > 160) {
+                offset = 0;
+            }
+            draw();
+        }
+        
+        
+        let button1 = document.getElementById("go");
+        button1.addEventListener('click', event => {
+            march();
+        })
+        let button2 = document.getElementById("xunhun");
+        var xunhun = "";
+        button2.addEventListener('click', event => {
+            console.log(!xunhun);
+            console.log(xunhun);
+            xunhun = setInterval(march, 200);
+            button2.setAttribute("disabled", true);
+            button3.removeAttribute("disabled");
+        })
+        let button3 = document.getElementById("tingzhi");
+        button3.setAttribute("disabled", true);
+        button3.addEventListener('click', event => {
+            clearInterval(xunhun);
+            button3.setAttribute("disabled", true);
+            button2.removeAttribute("disabled");
+        })
+
+        function initCanvas() {
+            let bg = document.getElementById("bg");
+            let drawing = document.getElementById("drawing");
+            let w = window.getComputedStyle(bg).getPropertyValue('width');
+            let h = window.getComputedStyle(bg).getPropertyValue('height');
+            console.log(w,h);
+            drawing.height = h.substring(0,h.length - 2);
+            drawing.width = w.substring(0,w.length - 2);
+        }
+    </script>
+</body>
+</html>

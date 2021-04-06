@@ -15,6 +15,35 @@ window.onload = function() {
 
     // 使用颜色和样式
     draw_5();
+    draw_6();
+    draw_6_2();
+
+    // 使用虚线
+    // draw_7();
+
+    // 渐变
+    draw_8();
+    draw_8_2();
+
+    // pattern
+    draw_9();
+
+    // 阴影
+    draw_10();
+
+    // 填充规则
+    draw_11();
+
+    // 绘制文本
+    draw_12();
+
+    // 使用图像
+    draw_13();
+
+    let reRenderMiterLimit = document.getElementById("reRenderMiterLimit");
+    reRenderMiterLimit.addEventListener('click', event => {
+        draw_6_2();
+    })
     
         
 }
@@ -309,6 +338,341 @@ function draw_5() {
 
 }
 
+function draw_6() {
+    let drawing_6 =  document.getElementById("drawing_6");
+    if (drawing_6.getContext) {
+        let context = drawing_6.getContext("2d");
+
+        // 不清楚的线
+        for (let i =0; i < 10; i++) {
+            context.lineWidth = 1 + i;
+            context.beginPath();
+            
+            context.moveTo(5 + i * 14, 5);
+            context.lineTo(5 + i * 14, 140);
+            
+            context.stroke();
+        }
+        
+        // 比较清楚的线
+        for (let i =0; i < 10; i++) {
+            context.lineWidth = 1 + i;
+            context.beginPath();
+            if ( i % 2 === 0) { // 奇数行 lineWidth 1+i 是奇数
+                context.moveTo(155 + 0.5 + i * 14, 5);
+                context.lineTo(155 + 0.5 + i * 14, 140);
+            } else {
+                context.moveTo(155 + i * 14, 5);
+                context.lineTo(155 + i * 14, 140);
+            }
+            context.stroke();
+        }
+
+        // lineCap
+        let lineCap = ['butt', 'round', 'square'];
+
+        context.strokeStyle = "#09f";
+        context.lineWidth = 1;
+        context.beginPath();
+        context.moveTo(10, 160);
+        context.lineTo(40, 160);
+        context.moveTo(10, 290);
+        context.lineTo(40, 290);
+        context.stroke();
+
+        context.strokeStyle = "black";
+        for (let i = 0; i < lineCap.length; i++) {
+            context.lineWidth = 15;
+            context.lineCap = lineCap[i];
+            context.beginPath();
+            context.moveTo(25 + i * 50, 160);
+            context.lineTo(25 + i * 50, 290);
+            context.stroke();
+        }
+
+
+        // lineJoin
+        let lineJoin = ['round', 'bevel', 'miter'];
+        context.width = 10;
+        for (let i = 0; i< lineJoin.length; i++) {
+            context.lineJoin = lineJoin[i];
+            context.beginPath();
+            context.moveTo(150, 165 + i * 40);
+            context.lineTo(190, 205 + i* 40);
+            context.lineTo(230, 165 + i * 40);
+            context.lineTo(270, 205 + i * 40);
+            context.lineTo(310, 165 + i * 40);
+            context.stroke();
+        }
+
+
+    } else {
+
+    }
+}
+
+function draw_6_2() {
+    let drawing_6_2 =  document.getElementById("drawing_6_2");
+    if (drawing_6_2.getContext) {
+        let context = drawing_6_2.getContext("2d");
+
+        context.clearRect(0, 0, 400, 150);
+
+        // 绘制参考线
+        context.strokeStyle = '#09f';
+        context.lineWidth   = 2;
+        context.strokeRect(-5, 50, 410, 50);
+
+        // 设置线条样式
+        context.strokeStyle = '#808080';
+        context.lineWidth = 10;
+
+        // 检查输入
+        if (document.getElementById('miterLimit').value.match(/\d+(\.\d+)?/)) {
+            context.miterLimit = parseFloat(document.getElementById('miterLimit').value);
+        } else {
+            alert('Value must be a positive number');
+        }
+
+        // 绘制线条
+        context.beginPath();
+        context.moveTo(0, 100);
+        for (i = 0; i < 32 ; i++) {
+            var dy = i % 2 == 0 ? 25 : -25;
+            context.lineTo(Math.pow(i, 1.5) * 2, 75 + dy); // Math.pow 返回 i的1.5次幂
+        }
+        context.stroke();
+        // 对比线条
+        context.strokeStyle = 'red';
+        context.lineWidth = 1;
+        context.beginPath();
+        context.moveTo(0, 100);
+        for (i = 0; i < 32 ; i++) {
+            var dy = i % 2 == 0 ? 25 : -25;
+            context.lineTo(Math.pow(i, 1.5) * 2, 75 + dy); // Math.pow 返回 i的1.5次幂
+        }
+        
+        context.stroke();
+        return false;
+    }
+}
+
+let offset_7 = 0;
+let drawing_7 =  document.getElementById("drawing_7");
+let context_7 = drawing_7.getContext("2d");
+
+
+function draw_7_1() {
+    context_7.clearRect(0, 0, drawing_7.width, drawing_7.height);
+
+    context_7.setLineDash([14, 5]);
+    context_7.lineDashOffset = -offset_7;
+    context_7.strokeRect(10,10, 100, 100);
+}
+
+function march_7() {
+    offset_7++;
+    if (offset_7 > 16) {
+        offset_7 = 0;
+    }
+    draw_7_1();
+    setTimeout(march_7, 200)
+}
+
+march_7();
+
+let offset_7_2 = 0;
+let drawing_7_2 =  document.getElementById("drawing_7_2");
+let context_7_2 = drawing_7_2.getContext("2d");
+
+
+function draw_7_2() {
+    context_7_2.clearRect(0, 0, drawing_7_2.width, drawing_7_2.height);
+
+    context_7_2.setLineDash([14, 5]);
+    context_7_2.lineDashOffset = -offset_7_2;
+    context_7_2.strokeRect(10,10, 100, 100);
+}
+
+function march_7_2() {
+    offset_7_2++;
+    if (offset_7_2 > 13) {
+        offset_7_2 = 0;
+    }
+    draw_7_2();
+    setTimeout(march_7_2, 1000)
+}
+
+march_7_2();
+
+
+function draw_8() {
+    let drawing_8 =  document.getElementById("drawing_8");
+    if (drawing_8.getContext) {
+        let context = drawing_8.getContext("2d");
+
+        // Create gradients
+        var lingrad = context.createLinearGradient(0,0,0,150);
+        lingrad.addColorStop(0, '#00ABEB');
+        lingrad.addColorStop(0.5, '#fff');
+        lingrad.addColorStop(0.5, '#26C000');
+        lingrad.addColorStop(1, '#fff');
+
+        var lingrad2 = context.createLinearGradient(0,50,0,95);
+        lingrad2.addColorStop(0.5, '#000');
+        lingrad2.addColorStop(1, 'rgba(0,0,0,0)');
+
+         // assign gradients to fill and stroke styles
+        context.fillStyle = lingrad;
+        context.strokeStyle = lingrad2;
+
+        // draw shapes
+        context.fillRect(10,10,130,130);
+        context.strokeRect(50,50,50,50);
+    }
+}
+
+function draw_8_2() {
+    let drawing_8_2 =  document.getElementById("drawing_8_2");
+    if (drawing_8_2.getContext) {
+        let context = drawing_8_2.getContext("2d");
+
+        // 创建渐变
+        var radgrad = context.createRadialGradient(45,45,10,52,50,30);
+        radgrad.addColorStop(0, '#A7D30C');
+        radgrad.addColorStop(0.9, '#019F62');
+        radgrad.addColorStop(1, 'rgba(1,159,98,0)');
+
+        var radgrad2 = context.createRadialGradient(105,105,20,112,120,50);
+        radgrad2.addColorStop(0, '#FF5F98');
+        radgrad2.addColorStop(0.75, '#FF0188');
+        radgrad2.addColorStop(1, 'rgba(255,1,136,0)');
+
+        var radgrad3 = context.createRadialGradient(95,15,15,102,20,40);
+        radgrad3.addColorStop(0, '#00C9FF');
+        radgrad3.addColorStop(0.8, '#00B5E2');
+        radgrad3.addColorStop(1, 'rgba(0,201,255,0)');
+
+        var radgrad4 = context.createRadialGradient(0,150,50,0,140,90);
+        radgrad4.addColorStop(0, '#F4F201');
+        radgrad4.addColorStop(0.8, '#E4C700');
+        radgrad4.addColorStop(1, 'rgba(228,199,0,0)');
+
+        // 画图形
+        context.fillStyle = radgrad4;
+        context.fillRect(0,0,150,150);
+        context.strokeRect(0,0,150,150);
+        context.fillStyle = radgrad3;
+        context.fillRect(0,0,150,150);
+        context.fillStyle = radgrad2;
+        context.fillRect(0,0,150,150);
+        context.fillStyle = radgrad;
+        context.fillRect(0,0,150,150);
+    }
+}
+
+function draw_9() {
+    let drawing_9 =  document.getElementById("drawing_9");
+    if (drawing_9.getContext) {
+        let context = drawing_9.getContext("2d");
+
+        var img = new Image();
+        img.src = 'https://mdn.mozillademos.org/files/222/Canvas_createpattern.png';
+        img.onload = function() {
+
+            // 创建图案
+            var ptrn = context.createPattern(img, 'repeat');
+            context.fillStyle = ptrn;
+            context.fillRect(0, 0, 150, 150);
+
+        }
+    }
+}
+
+function draw_10() {
+    let drawing_10 =  document.getElementById("drawing_10");
+    if (drawing_10.getContext) {
+        let context = drawing_10.getContext("2d");
+
+        context.shadowOffsetX = 2;
+        context.shadowOffsetY = 2;
+        context.shadowBlur = 2;
+        context.shadowColor = "rgba(0, 0, 0, 0.5)";
+
+        context.font = "20px Times New Roman";
+        context.fillStyle = "Black";
+        context.fillText("Sample String", 5, 30);
+    }
+}
+
+function draw_11() {
+    let drawing_11 =  document.getElementById("drawing_11");
+    if (drawing_11.getContext) {
+        let context = drawing_11.getContext("2d");
+
+        context.beginPath();
+        context.arc(50, 50, 30, 0, Math.PI*2, true);
+        context.arc(50, 50, 15, 0, Math.pi *2, true);
+        context.fill();
+
+        context.beginPath();
+        context.arc(150, 50, 30, 0, Math.PI*2, true);
+        context.arc(150, 50, 15, 0, Math.PI*2, true);
+        context.fill("evenodd");
+    }
+}
+function draw_12() {
+    let drawing_12 =  document.getElementById("drawing_12");
+    if (drawing_12.getContext) {
+        let context = drawing_12.getContext("2d");
+
+        context.font="48px serif";
+        context.fillText("hello world", 10, 50);
+        context.strokeText("Hello world", 10, 100);
+
+        context.textBaseLine = "hanging";
+        context.strokeRect(300, 0, 200,100);
+        context.strokeText("hello", 300, 100);
+        context.textBaseLine = "middle";
+        context.strokeText("hello", 300, 100);
+    }
+}
+function draw_13() {
+    let drawing_13 =  document.getElementById("drawing_13");
+    if (drawing_13.getContext) {
+        let context = drawing_13.getContext("2d");
+
+        var img = new Image();
+        img.onload = function(){
+            context.drawImage(img,0,0);
+            context.beginPath();
+            context.moveTo(30,96);
+            context.lineTo(70,66);
+            context.lineTo(103,76);
+            context.lineTo(170,15);
+            context.stroke();
+        }
+        img.src = 'https://mdn.mozillademos.org/files/5395/backdrop.png';
+
+        var img1 = new Image();
+        img1.onload = function() {
+            for (let i = 0; i < 4; i++) {
+                for (let j =0; j < 3; j++) {
+
+                    context.drawImage(img1,200 +j*50, i*38,50,38);
+                }
+            }
+        }
+        img1.src="https://mdn.mozillademos.org/files/5397/rhino.jpg";
+
+        // Draw slice
+        context.drawImage(document.getElementById('source'),
+        33,71,104,124,421,20,87,104);
+
+        // Draw frame
+        context.drawImage(document.getElementById('frame'),400,0);
+    }
+}
 function roundedRect(context, x, y, width, height, radius) {
     context.beginPath();
     context.moveTo(x, y + radius);

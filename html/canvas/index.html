@@ -4,14 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>canvas</title>
+    <link rel="icon" type="image/png" href="./../../favicon.ico"/>
     <link rel="stylesheet" href="./style.css">
+    <title>canvas</title>
 </head>
 <body>
     <div class="container">
+        <nav>
+            <ul>
+                <li><a href="#base">基础示例</a></li>
+                <li><a href="#shapes">绘制矩形</a></li>
+                <li><a href="#road">绘制路径</a></li>
+                <li><a href="#style">使用样式和颜色</a></li>
+                <li><a href="#text">绘制文本</a></li>
+                <li><a href="#image">使用图像 Using images</a></li>
+            </ul>
+        </nav>
         <div class="demo-wrapper">
             <div class="demo">
-                <div class="info">
+                <div class="info" id="base">
                     <h3>基础示例</h3>
                 </div>
                 <div class="">
@@ -20,7 +31,7 @@
                 </div>
             </div>
             <div class="demo">
-                <div class="info">
+                <div class="info" id="shapes">
                     <h3>绘制矩形</h3>
                     <p>
                         <code>fillRect(x, y, width, height)</code> 绘制一个填充的矩形<br />
@@ -33,7 +44,7 @@
                 </div>
             </div>
             <div class="demo">
-                <div class="info">
+                <div class="info" id="road">
                     <h3>绘制路径</h3>
                     <p>
                         <code>beginPath()</code> 新建一条路径，生成之后，图形绘制命令被指向到路径上生成路径。<br />
@@ -74,7 +85,7 @@
                 </div>
             </div>
             <div class="demo">
-                <h3>使用样式和颜色</h3>
+                <h3 id="style">使用样式和颜色</h3>
                 <p>
                     <code>fillStyle = color</code> 设置图形的填充颜色。 <br />
                     <code>strokeStyle = color</code> 设置图形轮廓的颜色。 <br />
@@ -84,6 +95,140 @@
                 </p>
                 <div class="">
                     <canvas id="drawing_5" width="600" height="150">A drawing of something.</canvas>
+                </div>
+                <h4>Line style</h4>
+                <p>
+                    <code>lineWidth = value</code> 设置线的宽度 <br />
+                    <code>lineCap = type</code> 设置线条末端样式。butt, round, square <br />
+                    <code>lineJoin = type</code> 设定线条与线条间接合处的样式。miter, round, bevel 。 需要注意miterLimit<br />
+                    <code>miterLimit = value</code> 限制当两条线相交时交接处最大长度；所谓交接处长度（斜接长度）是指线条交接处内角顶点到外角顶点的长度。用来设定外延交点与连接点的最大距离，如果交点距离大于此值，连接效果会变成了 bevel。<br />
+                    <code>getLineDash()</code> 返回一个包含当前虚线样式，长度为非负偶数的数组。<br />
+                    <code>setLineDash(segments)</code> 设置当前虚线样式。 <br />
+                    <code>lineDashOffset = value</code> 设置虚线样式的起始偏移量。
+                </p>
+                <div class="d-6">
+                    <canvas id="drawing_6" width="400" height="310">A drawing of something.</canvas>
+                    <canvas id="drawing_6_2" width="400" height="150">A drawing of something.</canvas>
+                    <div style="padding: 20px;">
+                        在输入框中输入miterLimit的值，并点击重绘按钮查看效果。<br />
+                        <input type="text" id="miterLimit" value="10"><br />
+                        <button id="reRenderMiterLimit">重新绘制</button>
+                    </div>
+                </div>
+                <h4>使用虚线</h4>
+                <p>用 <code>setLineDash</code> 方法和 <code>lineDashOffset</code> 属性来制定虚线样式. setLineDash 方法接受一个数组，来指定线段与间隙的交替；lineDashOffset 属性设置起始偏移量.</p>
+                <div>
+                    <canvas id="drawing_7" width="120" height="120">虚线</canvas>
+                    <canvas id="drawing_7_2" width="120" height="120">虚线</canvas>
+                </div>
+                <h4>使用渐变</h4>
+                <p>
+                    <code>createLinearGradient(x1, y1, x2, y2)</code> 方法接受 4 个参数，表示渐变的起点 (x1,y1) 与终点 (x2,y2)。<br />
+                    <code>createRadialGradient(x1, y1, r1, x2, y2, r2)</code> 接受 6 个参数，前三个定义一个以 (x1,y1) 为原点，半径为 r1 的圆，后三个参数则定义另一个以 (x2,y2) 为原点，半径为 r2 的圆。<br />
+                    <code>gradient.addColorStop(position, color)</code> 上色，方法接受 2 个参数，position 参数必须是一个 0.0 与 1.0 之间的数值，表示渐变中颜色所在的相对位置。
+                </p>
+                <div>
+                    <canvas id="drawing_8" width="300" height="120"></canvas>
+                    <canvas id="drawing_8_2" width="300" height="150"></canvas>
+                </div>
+                <h4>图案样式 Patterns</h4>
+                <p>
+                    <code>createPattern(image, type)</code> 该方法接受两个参数。Image 可以是一个 Image 对象的引用，或者另一个 canvas 对象。Type 必须是下面的字符串值之一：repeat，repeat-x，repeat-y 和 no-repeat。<br />
+                    使用 Image 对象的 onload handler 来确保设置图案之前图像已经装载完毕<br />
+                </p>
+                <div>
+                    <canvas id="drawing_9" width="300" height="120"></canvas>
+                </div>
+                <h4>阴影 Shadows</h4>
+                <p>
+                    <code>shadowOffsetX = float</code> <br />
+                    <code>shadowOffsetY = float</code> <br />
+                    shadowOffsetX 和 shadowOffsetY 用来设定阴影在 X 和 Y 轴的延伸距离，它们是不受变换矩阵所影响的。负值表示阴影会往上或左延伸，正值则表示会往下或右延伸，它们默认都为 0。<br />
+                    <code>shadowBlur = float</code> 用于设定阴影的模糊程度，其数值并不跟像素数量挂钩，也不受变换矩阵的影响，默认为 0。<br />
+                    <code>shadowColor = color</code> shadowColor 是标准的 CSS 颜色值，用于设定阴影颜色效果，默认是全透明的黑色。
+                </p>
+                <div>
+                    <canvas id="drawing_10" width="300" height="120"></canvas>
+                </div>
+                <h4>填充规则</h4>
+                <p>
+                    <code>nonzero</code><a href="https://en.wikipedia.org/wiki/Nonzero-rule" target="_blank">non-zero winding rule</a> 默认值<br />
+                    <code>evenodd</code><a href="https://en.wikipedia.org/wiki/Even%E2%80%93odd_rule" target="_blank">even-odd winding rule</a><br />
+                </p>
+                <div>
+                    <canvas id="drawing_11" width="300" height="120"></canvas>
+                </div>
+            </div>
+            <div class="demo">
+                <div class="info" id="text">
+                    <h3>绘制文本</h3>
+                    <p><code>fillText(text, x, y [, maxWidth])</code> 在指定的(x,y)位置填充指定的文本，绘制的最大宽度是可选的.<br />
+                    <code>strokeText(text, x, y [, maxWidth])</code> 在指定的(x,y)位置绘制文本边框，绘制的最大宽度是可选的.<br />
+                     <code>font = value</code> 当前我们用来绘制文本的样式. 这个字符串使用和 CSS font 属性相同的语法. 默认的字体是 10px sans-serif。<br />
+                     <code>textAlign = value</code>  文本对齐选项. 可选的值包括：start, end, left, right or center. 默认值是 start。<br />
+                     <code>textBaseline = value</code> 基线对齐选项. 可选的值包括：top, hanging, middle, alphabetic, ideographic, bottom。默认值是 alphabetic。<br />
+                     <code>direction = value</code> 文本方向。可能的值包括：ltr, rtl, inherit。默认值是 inherit。
+                     <code>measureText()</code> 将返回一个 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/TextMetrics" target="_blank">TextMetrics</a>对象的宽度、所在像素，这些体现文本特性的属性。
+                    </p>
+                </div>
+                <div class="">
+                    <canvas id="drawing_12" width="600" height="120">A drawing of something.</canvas>
+                </div>
+            </div>
+            <div class="demo">
+                <div class="info" id="image">
+                    <h3>使用图像 Using images</h3>
+                    <p>1. 获得一个指向HTMLImageElement的对象或者另一个canvas元素的引用作为源，也可以通过提供一个URL的方式来使用图片<a href="http://www.html5canvastutorials.com/tutorials/html5-canvas-images/" target="_blank">（参见例子）</a>
+                    <p>2. 使用<code>drawImage()</code>函数将图片绘制到画布上</p>
+                    <h4>获取需要绘制的图片 </h4>
+                    <h5><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasImageSource">CanvasImageSource</a></h5>
+                    <p><code>HTMLImageElement</code> 这些图片是由Image()函数构造出来的，或者任何的img元素<br />
+                    <code>HTMLVideoElement</code> 用一个HTML的 video元素作为你的图片源，可以从视频中抓取当前帧作为一个图像<br />
+                     <code>HTMLCanvasElement</code> 可以使用另一个 canvas 元素作为你的图片源。<br />
+                     <code>ImageBitmap</code>  这是一个高性能的位图，可以低延迟地绘制，它可以从上述的所有源以及其它几种源中生成。<br />
+                     <code>document.images</code>集合,<code> document.getElementsByTagName()</code> 和<code>document.getElementById()</code>方法获得与canvas相同页面内的图片的引用。<br />
+                     我们可以用脚本创建一个新的 HTMLImageElement 对象。要实现这个方法，我们可以使用很方便的Image()构造函数。
+                     <pre>
+                         <code>
+                            var img = new Image();   // 创建img元素
+                            img.onload = function(){
+                              // 执行drawImage语句
+                            }
+                            img.src = 'myImage.png';
+                         </code>
+                     </pre>
+                     还可以通过 data:url 方式来引用图像。Data urls 允许用一串 Base64 编码的字符串的方式来定义一个图片。
+                     <pre>
+                         <code>
+                            img.src = 'data:image/gif;base64,R0lGODlhCwALAIAAAAAA3pn/ZiH5BAEAAAEALAAAAAALAAsAAAIUhA+hkcuO4lmNVindo7qyrIXiGBYAOw==';
+                         </code>
+                     </pre>
+                     你还可以使用video 中的视频帧（即便视频是不可见的）。例如，如果你有一个ID为“myvideo”的video 元素，你可以这样做：
+                     <pre>
+                         <code>
+                            function getMyVideo() {
+                                var canvas = document.getElementById('canvas');
+                                if (canvas.getContext) {
+                                    var ctx = canvas.getContext('2d'); return document.getElementById('myvideo');
+                                }
+                            }
+                         </code>
+                     </pre>
+
+                     </p>
+                     <h4>绘制图片</h4>
+                     <p><code>drawImage(image, x, y)</code> 其中 image 是 image 或者 canvas 对象，x 和 y 是其在目标 canvas 里的起始坐标。SVG图像必须在 svg 根指定元素的宽度和高度。<br />
+                    <code>drawImage(image, x, y, width, height)</code> 这个方法多了2个参数：width 和 height，这两个参数用来控制 当向canvas画入时应该缩放的大小<br />
+                <code>drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)</code>第一个参数和其它的是相同的，都是一个图像或者另一个 canvas 的引用。其它8个参数最好是参照下图的图解，前4个是定义图像源的切片位置和大小，后4个则是定义切片的目标显示位置和大小。<br />
+            <img src="https://developer.mozilla.org/@api/deki/files/79/=Canvas_drawimage.jpg" alt=""> <br />
+        <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/imageSmoothingEnabled">imageSmoothingEnabled</a></p>
+                </div>
+                <div class="">
+                    <canvas id="drawing_13" width="600" height="200">A drawing of something.</canvas>
+                    <div style="display:none;">
+                        <img id="source" src="https://mdn.mozillademos.org/files/5397/rhino.jpg" width="300" height="227">
+                        <img id="frame" src="https://mdn.mozillademos.org/files/242/Canvas_picture_frame.png" width="132" height="150">
+                    </div>
                 </div>
             </div>
         </div>
