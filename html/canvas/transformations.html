@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Canvas demo">
+    <meta name="keywords" content="HTML, Canvas, transformations, 变形">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="./../../favicon.ico"/>
+    <link rel="stylesheet" href="./style.css">
+    <title>Canvas Transformations</title>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="#state">状态的保存和恢复</a></li>
+                <li><a href="#Translating">移动</a></li>
+                <li><a href="#Rotating">旋转</a></li>
+                <li><a href="#Scaling">缩放</a></li>
+                <li><a href="#Transforms">变形</a></li>
+            </ul>
+        </nav>
+        <div class="demo-wrapper">
+            <div class="demo">
+                <div class="info" id="state">
+                    <h3>状态的保存和恢复 Saving and restoring state</h3>
+                    <p>
+                        <code>save()</code> 保存画布(canvas)的所有状态<br />
+                        <code>restore()</code> save 和 restore 方法是用来保存和恢复 canvas 状态的，都没有参数。Canvas 的状态就是当前画面应用的所有样式和变形的一个快照。 <br />
+                        Canvas状态存储在栈中，每当save()方法被调用后，当前的状态就被推送到栈中保存。
+                    </p>
+                </div>
+                <div class="">
+                    <canvas id="drawing_1" width="600" height="200">A drawing of something.</canvas>
+                </div>
+            </div>
+            <div class="demo">
+                <div class="info" id="Translating">
+                    <h3>移动 Translating</h3>
+                    <p>
+                        <code>translate(x, y)</code> 方法接受两个参数。x 是左右偏移量，y 是上下偏移量，如下图所示。<br />
+                        <img src="https://developer.mozilla.org/@api/deki/files/85/=Canvas_grid_translate.png" alt=""><br />
+                        在做变形之前先保存状态是一个良好的习惯。
+                    </p>
+                </div>
+                <div class="">
+                    <canvas id="drawing_2" width="600" height="200">A drawing of something.</canvas>
+                </div>
+            </div>
+            <div class="demo">
+                <div class="info" id="Rotating">
+                    <h3>旋转 Rotating</h3>
+                    <p>
+                        <code>rotate(angle)</code> 这个方法只接受一个参数：旋转的角度(angle)，它是顺时针方向的，以弧度为单位的值。<br />
+                        <img src="https://developer.mozilla.org/@api/deki/files/84/=Canvas_grid_rotate.png" alt=""><br />
+                        旋转的中心点始终是 canvas 的原点，如果要改变它，我们需要用到 translate 方法。
+                    </p>
+                </div>
+                <div class="">
+                    <canvas id="drawing_3" width="600" height="200">A drawing of something.</canvas>
+                </div>
+            </div>
+            <div class="demo">
+                <div class="info" id="Scaling">
+                    <h3>缩放 Scaling</h3>
+                    <p>
+                        <code>scale(x, y)</code> 可以缩放画布的水平和垂直的单位。两个参数都是实数，可以为负数，x 为水平缩放因子，y 为垂直缩放因子，如果比1小，会缩小图形， 如果比1大会放大图形。默认值为1， 为实际大小。<br />
+                        默认情况下，canvas 的 1 个单位为 1 个像素。
+                    </p>
+                </div>
+                <div class="">
+                    <canvas id="drawing_4" width="600" height="200">A drawing of something.</canvas>
+                </div>
+            </div>
+            <div class="demo">
+                <div class="info" id="Transforms">
+                    <h3>变形 Transforms</h3>
+                    <p>
+                        <code>transform(a, b, c, d, e, f)</code> 方法是将当前的变形矩阵乘上一个基于自身参数的矩阵<br />
+                        <code>a (m11)</code>水平方向的缩放<br />
+                        <code>b(m12)</code>竖直方向的倾斜偏移<br />
+                        <code>c(m21)</code> 水平方向的倾斜偏移<br />
+                        <code>d(m22)</code>竖直方向的缩放<br />
+                        <code>e(dx)</code>水平方向的移动<br />
+                        <code>f(dy)</code> 竖直方向的移动<br />
+                        <code>setTransform(a, b, c, d, e, f)</code>这个方法会将当前的变形矩阵重置为单位矩阵，然后用相同的参数调用 transform 方法。如果任意一个参数是无限大，那么变形矩阵也必须被标记为无限大，否则会抛出异常。从根本上来说，该方法是取消了当前变形,然后设置为指定的变形,一步完成。<br />
+                        <code>resetTransform()</code>重置当前变形为单位矩阵，它和调用以下语句是一样的：<code>ctx.setTransform(1, 0, 0, 1, 0, 0)</code><br />
+                    </p>
+                </div>
+                <div class="">
+                    <canvas id="drawing_5" width="600" height="200">A drawing of something.</canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./transformations.js"></script>
+</body>
+</html>

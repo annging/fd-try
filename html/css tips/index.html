@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS</title>
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>css tips</h1>
+        <article>
+            <h2>打字效果</h2>
+            <section>
+                <div class="typing-demo">
+                    this is a tying demo.
+                </div>
+            </section>
+            <section>
+                <div class="typing-demo demo-2">
+                    这是打字的效果。
+                </div>
+            </section>
+        </article>
+        <article>
+            <h2>Drop shadow</h2>
+            <section class="grid row-1 col-2">
+                <div>
+                    <h3>box-shadow</h3>
+                    <img class="box-shadow" src="https://markodenic.com/man_working.png" alt="Image with box-shadow">
+                </div>
+                <div>
+                    <h3>drop-shadow</h3>
+                    <img class="drop-shadow" src="https://markodenic.com/man_working.png" alt="Image with drop-shadow">
+                </div>
+            </section>
+        </article>
+        <article>
+            <h2>Smooth scrolling</h2>
+            <section class="demo-3">
+                <nav>
+                    Scroll to: 
+                    <a href="#sectionA" class="link bg-red">A</a>
+                    
+                    <a href="#sectionB" class="link bg-blue">B</a>
+                    
+                    <a href="#sectionC" class="link bg-green">C</a>
+                  </nav>
+                  <div class="wrapper">
+                    <div id="sectionA" class="section bg-red">A</div>
+                    
+                    <div id="sectionB" class="section bg-blue">B</div>
+                    
+                    <div id="sectionC" class="section bg-green">C</div>
+                  </div>
+            </section>
+        </article>
+        <article>
+            <h2>Center</h2>
+            <p>水平垂直居中</p>
+            <pre>
+                <code>
+                    .center {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;       
+                    } 
+                </code>
+            </pre>
+            <section class="center" style="height: 200px; background-color: aqua;">
+                <div style="width: 100px; height: 100px; background-color:black; "></div>
+            </section>
+        </article>
+        <article>
+            <h2>Cursors</h2>
+            <section class="grid col-3">
+                <div class="tile">
+                    默认
+                </div>
+                <div class="tile tile--image-cursor">
+                    Image Cursor
+                  </div>
+                  
+                  <div class="tile tile--emoji-cursor">
+                    Emoji Cursor
+                  </div>
+            </section>
+        </article>
+        <article>
+            <h2>Truncate text 省略文字</h2>
+            <section>
+                <div class="overflow-ellipsis">
+                    This text is truncated, because there is not enough space to display it completely.
+                  </div>
+            </section>
+        </article>
+        <article>
+            <h2>将文本截断为特定的行数</h2>
+            <p>您可以使用“ -webkit-line-clamp”属性将文本截断为特定的行数</p>
+            <section>
+                <p class="line-clamp" style="width: 300px;">
+                    You can use <code>-webkit-line-clamp</code> property to truncate the text to the specific number of lines.
+                    An ellipsis will be shown at the point where the text is clamped.
+                </p>
+            </section>
+        </article>
+        <article>
+            <h2>`:: selection` CSS伪元素</h2>
+            <p>SS伪元素:: :: selection将样式应用于用户高亮显示文本部分（例如，在文本上单击和拖动鼠标）。</p>
+            <section>
+                <p>
+                    This is default highlighting. Try it out.
+                </p>
+                <p class="custom-highlighting">
+                    This is customized highlighting. Try it out.
+                </p>
+            </section>
+        </article>
+        <article>
+            <h2>resize</h2>
+            <section>
+                <textarea class="resize-example">这个文本框是可以缩放的</textarea>
+                <div class="resize-example-both">这个div是可缩放的,overflow不是visible</div>
+                <div class="resize-example-both" style="overflow: visible;">这个div是不可缩放的,overflow是visible</div>
+            </section>
+        </article>
+        <article>
+            <h2>css modals</h2>
+            <p>可以使用`:target`伪类来创建零JavaScript的模态框。</p>
+            <section class="center" id="demo-4" style="position: relative; height: 300px; width: 100%;background: -webkit-linear-gradient(to right, #834d9b, #d04ed6);background: linear-gradient(to right, #834d9b, #d04ed6);">
+                <div><a class="btn-modal" href="#demo-modal">点击打开弹窗</a></div>
+                <div id="demo-modal" class="modal">
+                    <div class="modal__content">
+                        <h3>我是个弹窗</h3>
+                        <a href="#demo-4" class="modal__close">&times;</a>
+                    </div>
+                </div>
+            </section>
+        </article>
+        <article>
+            <h2>calc()</h2>
+            <p> 此 CSS 函数允许在声明 CSS 属性值时执行一些计算</p>
+            <pre>
+                <code>
+                    .calculated-width: {
+                        width: calc(100% - 30px); // + 和 - 两边必须有空格
+                    }
+                </code>
+            </pre>
+            <section style="width: 100%; position: relative; padding: 40px 0">
+                <div class="banner">This is a banner!</div>
+            </section>
+        </article>
+        <article>
+            <h2>给空元素添加样式</h2>
+            <p>
+                使用`:empty`选择器给没有子元素和文本元素的元素添加样式
+            </p>
+            <section class="grid col-2">
+                <div class="box"></div>
+                <div class="box">有内容</div>
+            </section>
+        </article>
+        <article>
+            <h2>自定义滚动条</h2>
+            <section class="grid col-2">
+                <div class="tile">
+                    <div class="tile-content">
+                      默认滚动条
+                    </div>
+                </div>
+                <div class="tile tile--custom-scrollbar">
+                    <div class="tile-content">
+                      自定义滚动条
+                    </div>
+                </div>
+            </section>
+        </article>
+        <article>
+            <h2>position: sticky</h2>
+            <p>可以使用sticky设置粘性标题</p>
+            <section class="section-sticky">
+                <div class="section-sticky__header">
+                  <h3>
+                    Section #1 Header
+                  </h3>
+                </div>
+                
+                <div class="section-sticky__content">
+                  <div>
+                    <h4>
+                      Section #1
+                    </h4>
+                  
+                    <p>
+                      The element is positioned according to the normal flow of the document, and then offset relative to its nearest scrolling ancestor and containing block (nearest block-level ancestor), including table-related elements, based on the values of top, right, bottom, and left. The offset does not affect the position of any other elements.
+                    </p>
+                    
+                    <p>
+                This value always creates a new stacking context. Note that a sticky element "sticks" to its nearest ancestor that has a "scrolling mechanism" (created when overflow is hidden, scroll, auto, or overlay), even if that ancestor isn't the nearest actually scrolling ancestor. This effectively inhibits any "sticky" behavior (see the Github issue on W3C CSSWG).
+                    </p>
+                  </div>
+                </div>
+              </section>
+              
+              <section class="section-sticky">
+                <div class="section-sticky__header">
+                  <h3>
+                    Section #2 Header
+                  </h3>
+                </div>
+                
+                <div class="section-sticky__content">
+                  <div>
+                    <h4>
+                      Section #2
+                    </h4>
+                  
+                    <p>
+                      The element is positioned according to the normal flow of the document, and then offset relative to its nearest scrolling ancestor and containing block (nearest block-level ancestor), including table-related elements, based on the values of top, right, bottom, and left. The offset does not affect the position of any other elements.
+                    </p>
+                    
+                    <p>
+                This value always creates a new stacking context. Note that a sticky element "sticks" to its nearest ancestor that has a "scrolling mechanism" (created when overflow is hidden, scroll, auto, or overlay), even if that ancestor isn't the nearest actually scrolling ancestor. This effectively inhibits any "sticky" behavior (see the Github issue on W3C CSSWG).
+                    </p>
+                  </div>
+                </div>
+              </section>
+              
+              <section class="section-sticky">
+                <div class="section-sticky__header">
+                  <h3>
+                    Section #3 Header
+                  </h3>
+                </div>
+                
+                <div class="section-sticky__content">
+                  <div>
+                    <h4>
+                      Section #3
+                    </h4>
+                  
+                    <p>
+                      The element is positioned according to the normal flow of the document, and then offset relative to its nearest scrolling ancestor and containing block (nearest block-level ancestor), including table-related elements, based on the values of top, right, bottom, and left. The offset does not affect the position of any other elements.
+                    </p>
+                    
+                    <p>
+                This value always creates a new stacking context. Note that a sticky element "sticks" to its nearest ancestor that has a "scrolling mechanism" (created when overflow is hidden, scroll, auto, or overlay), even if that ancestor isn't the nearest actually scrolling ancestor. This effectively inhibits any "sticky" behavior (see the Github issue on W3C CSSWG).
+                    </p>
+                  </div>
+                </div>
+              </section>
+              
+              <section class="section-sticky">
+                <div class="section-sticky__header">
+                  <h3>
+                    Section #4 Header
+                  </h3>
+                </div>
+                
+                <div class="section-sticky__content">
+                  <div>
+                    <h4>
+                      Section #4
+                    </h4>
+                  
+                    <p>
+                      The element is positioned according to the normal flow of the document, and then offset relative to its nearest scrolling ancestor and containing block (nearest block-level ancestor), including table-related elements, based on the values of top, right, bottom, and left. The offset does not affect the position of any other elements.
+                    </p>
+                    
+                    <p>
+                This value always creates a new stacking context. Note that a sticky element "sticks" to its nearest ancestor that has a "scrolling mechanism" (created when overflow is hidden, scroll, auto, or overlay), even if that ancestor isn't the nearest actually scrolling ancestor. This effectively inhibits any "sticky" behavior (see the Github issue on W3C CSSWG).
+                    </p>
+                  </div>
+                </div>
+              </section>
+        </article>
+        <article>
+            <h2>
+                CSS Scroll Snap
+            </h2>
+            <p>scroll-snap-type CSS 属性定义在滚动容器中的一个临时点（snap point）如何被严格的执行。</p>
+            <section class="demo-snap">
+                <div>
+                    1
+                </div>
+                <div style="background-color: #834d9b;">
+                    2
+                </div>
+                <div style="background-color: aquamarine;">
+                    3
+                </div>
+                <div style="background-color: blue;">
+                    4
+                </div>
+                <div style="background-color: #d04ed6;">
+                    5
+                </div>
+            </section>
+        </article>
+        <article>
+            <h2>Dynamic Tooltips</h2>
+            <p>attr()这个方法实现动态提示</p>
+            <section>
+                <p>
+                    鼠标放在 <span class="tooltip" data-tooltip="今天你吃饭了吗">这里</span> 来查看提示.
+                </p>      
+            </section>
+        </article>
+        <article>
+            <h2>caret-color</h2>
+            <p>这个用来改变input Cursor的颜色</p>
+            <section>
+                <input type="text" value="haha" class="caret-color-red">
+            </section>
+        </article>
+        <article>
+            <h2>`:in-range` and `:out-of-range` 伪类</h2>
+            <p>当input的值超出min 或max值时可以使用伪类来设置其样式</p>
+            <section>
+                <label for="one">请输入10-20</label>
+                <input type="number" min="10" max="20" name="one" id="one" value="12"><br />
+                <label for="two">请输入0-10</label>
+                <input type="number" min="0" max="10" name="two" id="two" value="12">
+            </section>
+        </article>
+        <article>
+            <h2>特殊的文字效果</h2>
+            <p>使用background-clip属性创建漂亮的标题。</p>
+            <section class="clip-demo">
+                <h1>CSS IS AWESOME</h1>
+            </section>
+        </article>
+    </div>
+</body>
+</html>

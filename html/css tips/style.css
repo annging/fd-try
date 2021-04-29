@@ -1,0 +1,378 @@
+.grid {
+    display: grid;
+}
+.row-1 {
+    grid-template-rows: 350px;
+}
+.col-2 {
+    grid-template-columns: 300px 300px;
+}
+.col-3 {
+    grid-template-columns: 250px 250px 250px;
+}
+h2 {
+    background-color: aliceblue;
+    margin-top: 40px;
+}
+/**
+  * css typing demo
+**/
+.typing-demo {
+    width: 22ch;
+    animation: typing 2s steps(22), blink .5s step-end infinite alternate; /* animation 属性用来指定一组或多组动画，每组之间用逗号相隔*/
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid;
+    font-family: monospace;
+    font-size: 2em;
+}
+.demo-2 {
+    width: 14.4ch;
+    animation: typing 2s steps(8), blink .5s step-end infinite alternate;
+}
+@keyframes typing {
+    from {
+        width: 0
+    }
+    /** 省略了以下
+    to {
+        width: 22ch;
+    }
+    **/
+} /* 关键帧规则没有指定动画的开始或结束状态（也就是，0%/from 和100%/to，浏览器将使用元素的现有样式作为起始/结束状态。 */
+      
+@keyframes blink {
+    50% {
+        border-color: transparent
+    }
+}
+
+/**
+*  drop shadow
+**/ 
+.box-shadow {
+    box-shadow: 2px 4px 8px #585858;
+}
+  
+.drop-shadow {
+    filter: drop-shadow(2px 4px 8px #585858);
+}
+
+/**
+* Smooth scrolling
+*/ 
+.demo-3 {
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+
+.demo-3  .wrapper {
+    height: 300px;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+}
+nav {
+    position: absolute;
+    left: calc(400px - 115px);
+    top: 0;
+    width: 200px;
+    text-align: center;
+    padding: 15px;
+    background: #fff;
+    box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.2);
+}
+nav .link {
+    padding: 5px;
+    color: white;
+}
+.section {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 5em;
+    text-shadow:
+      0px 2px 0px #b2a98f,
+      0px 4px 3px rgba(0,0,0,0.15),
+      0px 8px 1px rgba(0,0,0,0.1);
+  }
+  
+  .bg-red {
+    background: #de5448;
+  }
+  
+  .bg-blue {
+    background: #4267b2;
+  }
+  
+.bg-green {
+    background: #4CAF50;
+}
+
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;       
+} 
+
+.tile {
+    width: 200px;
+    height: 200px;display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #de5448;
+    margin-right: 10px;color: #fff;
+    font-size: 1.4em;
+    text-align: center;
+  }
+
+.tile--image-cursor {
+  background-color: #1da1f2;
+  cursor: url(https://picsum.photos/20/20), auto;
+}
+
+.tile--emoji-cursor {
+  background-color: #4267b2;
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>🚀</text></svg>"), auto;
+}
+
+.overflow-ellipsis {
+    width: 200px;
+    background-color: #fff;
+    padding: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.line-clamp {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* Change this line if you want. In this case it trimmed the text to 3 lines. */
+    overflow: hidden;
+}
+
+.custom-highlighting::selection {
+    background-color: #8e44ad;
+    color: #fff;
+}
+
+.resize-example-both {
+    width: 200px;
+    height: 80px;
+    border: 1px solid #333;
+    overflow: scroll;
+    resize: both;
+}
+
+.btn-modal {
+    display: inline-block;
+    text-decoration: none;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 3px;
+    text-transform: uppercase;
+    color: #585858;
+    font-family: 'Roboto', sans-serif;
+}
+.modal {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(77, 77, 77, .7);
+    transition: all .4s;
+  }
+  
+  .modal:target {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .modal__content {
+    border-radius: 4px;
+    position: relative;
+    width: 500px;
+    max-width: 90%;
+    background: #fff;
+    padding: 1em 2em;
+  }
+
+  .modal__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #585858;
+    text-decoration: none;
+  }
+
+  .banner {
+    position: absolute;
+    left: 40px;
+    width: calc(100% - 80px);
+    border: solid black 1px;
+    box-shadow: 1px 2px;
+    background-color: yellow;
+    padding: 6px;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .box {
+    display: inline-block;
+    background: #999;
+    border: 1px solid #585858;
+    height: 200px;
+    width: 200px;
+    margin-right: 15px;
+  }
+  
+  .box:empty {
+    background: #fff;
+  }
+
+
+.tile {
+    overflow: auto;
+    display: inline-block;
+    background-color:#eff1f5;
+    color: #333;
+    height: 200px;
+    width: 220px;
+}
+.tile--custom-scrollbar::-webkit-scrollbar {
+    width: 12px;
+    background-color: #eff1f5;
+}
+  
+.tile--custom-scrollbar::-webkit-scrollbar-track{
+    border-radius: 3px;
+    background-color: transparent;
+}
+  
+.tile--custom-scrollbar::-webkit-scrollbar-thumb{
+    border-radius:5px;
+    background-color:#515769;
+    border:2px solid #eff1f5
+}
+
+.tile-content {
+    padding: 20px;
+    height: 500px;
+}
+
+
+.section-sticky {
+    font-size: 1.4em;
+    letter-spacing: 0.05em;
+    line-height: 1.5em;
+}
+.section-sticky h2, h3 {
+      text-align: center;
+      margin: 0;
+      font-weight: normal;
+}
+.section-sticky__header {
+      position: sticky;
+      top: 0;
+      padding: 1em;
+      color: #a99160;
+      background: #171717;
+}
+.section-sticky__content {
+      padding: 1em;
+      display: flex;
+      justify-content: center;
+}
+.section-sticky > div {
+        max-width: 992px;
+}
+
+.demo-snap {
+    height: 200px;
+    overflow: auto;
+    scroll-snap-type: y mandatory;
+}
+.demo-snap > div {
+    scroll-snap-align: center;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #de5448;
+    color: #fff;
+    font-size: 3em;
+}
+
+.tooltip {
+    position: relative;
+    border-bottom: 1px dotted black;
+  }
+  
+  /* Tooltip box */
+  .tooltip:before {
+    content: attr(data-tooltip); 
+    position: absolute;
+    width: 100px;
+    background-color: #062B45;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    line-height: 1.2;
+    border-radius: 6px;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity .6s;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    font-size: 0.75em;
+  }
+  
+  /* Tooltip arrow */
+  .tooltip:after {
+    content: "";
+    position: absolute;
+    bottom: 75%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    opacity: 0;
+    transition: opacity .6s;
+    border-color: #062B45 transparent transparent transparent;
+  }
+  
+  .tooltip:hover:before, .tooltip:hover:after {
+    opacity: 1;
+  }
+
+.caret-color-red {
+    caret-color: red
+}
+
+
+input:in-range {
+    background-color: rgba(0, 255, 0, 0.25);
+}
+input:out-of-range {
+    background-color: rgba(255, 0, 0, 0.25);
+}
+
+.clip-demo {
+    background: blue url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixid=MnwxMjA3fDB8MHxwaG90by1vZi10aGUtZGF5fHx8fGVufDB8fHx8&ixlib=rb-1.2.1&dpr=1&auto=format%2Ccompress&fit=crop&w=3999&h=594');
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-top: 20px;
+    font-size: 120px;
+}
