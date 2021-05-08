@@ -1,0 +1,39 @@
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.grid {
+    display: grid;
+}
+.row-1 {
+    grid-template-rows: 350px;
+}
+.col-2 {
+    grid-template-columns: 300px 300px;
+}
+.col-3 {
+    grid-template-columns: 250px 250px 250px;
+}
+h2 {
+    background-color: aliceblue;
+    margin-top: 40px;
+}
+code { 
+    background: rgba(0, 0, 0, 0.06) 
+}
+
+pre {
+    white-space: pre-wrap;
+    background: #d8f0fa;
+}
+
+.consolelog {
+    padding: 8px 10px;
+    border: 1px solid #dfdfdf;
+    font-size: 0.8em;
+}
+.consolelog.active {
+    background-color: blanchedalmond;
+    border-color: red;
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>location</title>
+    <link rel="stylesheet" href="../css/common.css">
+</head>
+<body>
+    <div class="container">
+        <h1>location</h1>
+        <article>
+            <h2>查询字符串</h2>
+            <section>
+                <pre>
+                    <code>
+        let getQueryStringArgs = function() {
+            // 取得没有开头问号的查询字符串
+            let qs = (location.search.length > 0 ? location.search.substring(1) : ""),
+            // 保存数据的对象
+            args = {};
+            // 把每个参数添加到args 对象
+            for (let item of qs.split("&").map(kv => kv.split("="))) {
+                let name = decodeURIComponent(item[0]),
+                value = decodeURIComponent(item[1]);
+                if (name.length) {
+                    args[name] = value;
+                }
+            }
+            return args;
+        }</code>
+                </pre>
+                <p>
+                    <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent" target="_blank">
+                        <code>decodeURIComponent()</code>
+                    </a><br />
+                    <span>用于解码由 encodeURIComponent 方法或者其它类似方法编码的部分统一资源标识符（URI）。</span><br>
+                    <span>箭头函数有两个方面的作用：更简短的函数并且不绑定this，常用于匿名函数。</span>
+                </p>
+                <p id="getQueryStringArgs">试试访问<a href="./location.html?q=javascript&num=10">这个页面</a></p>
+            </section>
+        </article>
+        <article>
+            <h2><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/URLSearchParams" target="_blank">URLSearchParams</a></h2>
+            <section>
+                <pre>
+                    <code>
+    let qs = "?q=javascript&num=10";
+    let searchParams = new URLSearchParams(qs);
+
+    alert(searchParams.toString()); // " q=javascript&num=10"
+    searchParams.has("num"); // true
+    searchParams.get("num"); // 10
+    searchParams.set("page", "3");
+    alert(searchParams.toString()); // " q=javascript&num=10&page=3"
+
+    for (let param of searchParams) {
+        console.log(param);
+    }
+    // ["q", "javascript"]
+    // ["num", "10"]</code>
+                </pre>
+            </section>
+        </article>
+        <article>
+            <h2>操作地址</h2>
+            <section>
+                <pre><code>
+    location.assign("http://learn.bancheng.ml/");
+    window.location = "http://learn.bancheng.ml/"; // 隐式调用assign()
+    location.href = "http://learn.bancheng.ml/"; // 隐式调用assign()， 最常用
+    location.replace('http://learn.bancheng.ml/'); // 不会增加历史记录。调用replace()之后，用户不能回到前一页。
+    location.reload(); // 重新加载，可能是从缓存加载
+    location.reload(true); // 重新加载，从服务器加载</code>
+                </pre>
+                <p>修改location 对象的属性也会修改当前加载的页面。其中，hash、search、hostname、pathname
+                    和port 属性被设置为新值之后都会修改当前URL。</p>
+                <button onclick="location.href = 'http://learn.bancheng.ml/'">点击执行location.href</button>
+                <button onclick="location.hash='#getQueryStringArgs'">点击修改hash为#getQueryStringArgs</button>
+                <button onclick="location.replace('http://learn.bancheng.ml/')">点击replace当前页面</button>
+            </section>
+        </article>
+    </div>
+
+    <script>
+        window.onload = function() {
+            let query = getQueryStringArgs();
+            let queryHtml = '当前页面查询字符串的结果为: <br />';
+            if (Object.keys(query).length > 0) { // 空对象是真值,所以这里这样判断
+                Object.keys(query).forEach(key => {
+                    queryHtml += key + ':' + query[key] + '<br/>';
+                });
+                let queryElement = document.getElementById('getQueryStringArgs');
+                queryElement.innerHTML = queryHtml;
+                queryElement.className = 'consolelog active'
+            }
+        }
+        var getQueryStringArgs = function() {
+            // 取得没有开头问号的查询字符串
+            let qs = (location.search.length > 0 ? location.search.substring(1) : ""),
+            // 保存数据的对象
+            args = {};
+            // 把每个参数添加到args 对象
+            for (let item of qs.split("&").map(kv => kv.split("="))) {
+                let name = decodeURIComponent(item[0]),
+                value = decodeURIComponent(item[1]);
+                if (name.length) {
+                    args[name] = value;
+                }
+            }
+            return args;
+        }
+    </script>
+</body>
+</html>
